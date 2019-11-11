@@ -1,0 +1,14 @@
+{
+  "name": "shmoogleembedded",
+  "version": "1.0.0",
+  "description": "A Easy Embedded implementation of the Shmoogle world search engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fadi Atamny, Elias Renman",
+  "license": "ISC",
+  "dependencies": {
+    "laravel-mix": "^5.0.0"
+  }
+}
