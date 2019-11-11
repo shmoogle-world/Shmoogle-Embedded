@@ -1,12 +1,12 @@
 <template>
-    <div class="results-container">
-        <div class="result-div" v-for="res of data" v-bind:key="res">
-            <div class="original-position">
+    <div class="shw-results-container">
+        <div class="shw-result-div" v-for="res of data" v-bind:key="res.id">
+            <div class="shw-original-position">
                 Original Position: {{ res.originalResultIndex + 1 }}
             </div>
-                <a :href="res.url" class="title">{{ res.name }}</a>
-                <a :href="res.url" class="url">{{ res.url }}</a>
-            <div class="content">{{ res.snippet }}</div>
+                <a :href="res.url" class="shw-title">{{ res.name }}</a>
+                <a :href="res.url" class="shw-url">{{ res.url }}</a>
+            <div class="shw-content">{{ res.snippet }}</div>
         </div>
     </div>
 </template>
@@ -19,7 +19,8 @@ export default {
 </script>
 
 <style>
-.results-container {
+
+.shw-results-container {
   width: 30vw;
   padding: 0 15px;
   height: 54vh;
@@ -27,32 +28,32 @@ export default {
   overflow-x: hidden;
 }
 
-.result-div {
+.shw-result-div {
   margin-bottom: 30px;
   font-family: Arial, sans-serif;
 }
 
-.content {
+.shw-content {
   font-size: 13px;
   color: #545454;
   line-height: 18.2px;
   margin-top: 1px;
 }
 
-.original-position {
+.shw-original-position {
   font-family: arial;
   font-size: 12px;
   color: #000;
 }
 
-.title {
+.shw-title {
   font-size: 18px;
   color: rgb(26, 13, 171);
   line-height: 22px;
   text-decoration: none;
 }
 
-.url {
+.shw-url {
   font-size: 14px;
   color: rgb(0, 102, 33);
   line-height: 16px;
@@ -60,6 +61,15 @@ export default {
   margin-top: -2px;
   display: block;
   word-break: break-all;
+}
+
+
+@media only screen and (max-width: 765px) {
+  .shw-results-container {
+    width: 55vw;
+    padding: 0 5px;
+  }
+
 }
 
 </style>

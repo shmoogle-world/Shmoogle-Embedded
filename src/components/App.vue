@@ -2,7 +2,7 @@
   <div class="shw-container">
     <div class="shw-svg-parent">
       <svg
-        class="small-logo"
+        class="shw-small-logo"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         width="156"
@@ -27,7 +27,7 @@
           v-on:keyup.enter="sendSearchRequest"
         />
         <img
-          class="search-icon"
+          class="shw-search-icon"
           src="https://shmoogle.world/assets/search.svg"
           @click="sendSearchRequest"
         />
@@ -74,14 +74,16 @@ export default {
             let response = JSON.parse(this.response);
             self.decode(response);
             self.result = response;
+            
             self.renderModal();
           }
         }
       };
-
+      //TODO: Update this with the placeholder access key when that system is in place.
+      //TODO: Add comments and stuff ༼ つ ◕_◕ ༽つ
       http.open(
         "GET",
-        "https://bingsearchapi.azurewebsites.net/shmoogleShuffle/" +
+        "https://bingsearchapiv1.azurewebsites.net/api/search/" +
           this.searchQuery
       );
       http.send(null);
@@ -104,10 +106,9 @@ export default {
             },
             {
                 draggable: false,
-                resizable: true,
+                resizable: false,
                 width: "70%",
                 height: "60%",
-
                 adaptive: true
             }
         );
@@ -203,7 +204,7 @@ export default {
   outline: none;
 }
 
-.search-icon {
+.shw-search-icon {
   width: 18px;
   height: 23px;
   position: relative;
@@ -221,7 +222,7 @@ export default {
   padding-left: 0.8rem;
 }
 
-.small-logo {
+.shw-small-logo {
   width: 52px;
   height: 32px;
 }
