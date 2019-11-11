@@ -20,7 +20,12 @@
     </div>
     <div>
       <div class="shw-input-parent">
-        <input class="shw-input" type="text" v-model="searchQuery" v-on:keyup.enter="sendSearchRequest" />
+        <input
+          class="shw-input"
+          type="text"
+          v-model="searchQuery"
+          v-on:keyup.enter="sendSearchRequest"
+        />
         <img
           class="search-icon"
           src="https://shmoogle.world/assets/search.svg"
@@ -33,7 +38,7 @@
         <div class="shw-load-bar"></div>
       </div>
     </div>
-    <modal v-bind="result"></modal>
+    <modals-container></modals-container>
   </div>
 </template>
 
@@ -45,7 +50,8 @@ export default {
     return {
       loadingAnimation: false,
       searchQuery: "",
-      result: ""
+      resultElapsedTime: 0,
+      result: {}
     };
   },
   components: {
@@ -55,7 +61,56 @@ export default {
   methods: {
     sendSearchRequest() {
       this.loadingAnimation = true;
-      console.log(this.searchQuery);
+      const initTime = new Date().getTime();
+      const http = new XMLHttpRequest();
+
+      var self = this;
+      http.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            self.loadingAnimation = false;
+            let time = (new Date().getTime() - initTime) / 1000;
+            self.resultElapsedTime = parseFloat(time.toPrecision(3));
+            let response = JSON.parse(this.response);
+            self.decode(response);
+            self.result = response;
+            self.renderModal();
+          }
+        }
+      };
+
+      http.open(
+        "GET",
+        "https://bingsearchapi.azurewebsites.net/shmoogleShuffle/" +
+          this.searchQuery
+      );
+      http.send(null);
+    },
+    decode(response) {
+      for (let i = 0; i < response[1].length; ++i) {
+        let tmp1 = response[1][i];
+        let tmp2 = response[0][i];
+
+        tmp1.url = decodeURI(tmp1.url);
+        tmp2.url = decodeURI(tmp2.url);
+      }
+    },
+    renderModal() {
+        this.$modal.show(Modal,
+            {
+                "data": this.result,
+                "elapsedTime": this.resultElapsedTime
+
+            },
+            {
+                draggable: false,
+                resizable: true,
+                width: "70%",
+                height: "60%",
+
+                adaptive: true
+            }
+        );
     }
   }
 };
@@ -63,7 +118,7 @@ export default {
 
 <style scoped>
 .shw-flexbox {
-    display: flex;
+  display: flex;
 }
 
 .shw-load-animation {
@@ -176,7 +231,6 @@ export default {
 }
 
 @media only screen and (max-width: 765px) {
-
   .shw-input-parent {
     width: 160px;
   }
@@ -189,5 +243,4 @@ export default {
     width: 154px;
   }
 }
-
 </style>
