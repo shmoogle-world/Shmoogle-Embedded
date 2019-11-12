@@ -74,7 +74,7 @@ export default {
             let response = JSON.parse(this.response);
             self.decode(response);
             self.result = response;
-            
+
             self.renderModal();
           }
         }
@@ -98,20 +98,20 @@ export default {
       }
     },
     renderModal() {
-        this.$modal.show(Modal,
-            {
-                "data": this.result,
-                "elapsedTime": this.resultElapsedTime
-
-            },
-            {
-                draggable: false,
-                resizable: false,
-                width: "70%",
-                height: "60%",
-                adaptive: true
-            }
-        );
+      this.$modal.show(
+        Modal,
+        {
+          data: this.result,
+          elapsedTime: this.resultElapsedTime
+        },
+        {
+          draggable: false,
+          resizable: false,
+          width: "70%",
+          height: "60%",
+          adaptive: true
+        }
+      );
     }
   }
 };
