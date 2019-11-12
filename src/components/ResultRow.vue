@@ -65,6 +65,7 @@ export default {
   .shw-results-container {
     width: 55vw;
     padding: 0 5px;
+    height: 42vh;
   }
 
 }
