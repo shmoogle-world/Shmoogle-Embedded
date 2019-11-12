@@ -1,25 +1,22 @@
 <template>
-    <!-- <h1>Hello world</h1> -->
     <div class="shw-modal">
         <div class="shw-counter">
-            Showing {{ counter }} results ({{ elapsedTime }} seconds)
-            
             <toggle-button class="shw-toggleBtn" v-if="isMobile" v-model="mobileShuffled"
                 :color="{checked: '#01B8B3', unchecked: '#FECD07'}"
                 :sync="true"
-                :labels="true"/>
+                :labels="{checked:'Shuffled', unchecked:'Unshuffled'}"
+                :width="85"/>
+            <div class="shw-textCounter">
+                Showing {{ counter }} results ({{ elapsedTime }} seconds)
+            </div>
         </div>
         <div class="shw-container shw-justify-center">
-
             <div>
-                <!-- -v-if="(mobile && !shuffled) || (!mobile)" -->
                 <result-row v-if="(isMobile && mobileShuffled) || (!isMobile)" :data="shuffled"></result-row>
             </div>
             <div>
-                <!-- -v-if="(mobile && !shuffled) || (!mobile)" -->
                 <result-row v-if="(isMobile && !mobileShuffled) || (!isMobile)" :data="unshuffled"></result-row>
             </div>
-        
         </div>
     </div>
 </template>
@@ -35,12 +32,10 @@ export default {
     ],
     data() {
         return {
-        
             mobileShuffled: true
         };
     },
     computed: {
-
         isMobile() {
             if( screen.width <= 760 ) {
                 return true;
@@ -49,7 +44,6 @@ export default {
                 return false;
             }
         },
-
         counter() {
             return this.data[0].length;
         },
@@ -97,4 +91,24 @@ export default {
 }
 
 
+@media only screen and (max-width: 765px) {
+    .shw-toggleBtn{
+        margin-right: 5px;
+    }
+    
+    .shw-textCounter{
+        padding-top: 5px;
+    }
+}
+
+@media only screen and (max-width: 424px) {
+    .shw-toggleBtn{
+        margin-right: 5px;
+    }
+    
+    .shw-modal {
+        margin-right: 0px;
+    }
+
+}
 </style>

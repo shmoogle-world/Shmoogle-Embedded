@@ -1,6 +1,6 @@
 <template>
     <div class="shw-results-container">
-        <div class="shw-result-div" v-for="res of data" v-bind:key="res.id">
+        <div class="shw-result-div" v-for="(res, index) in data" v-bind:key="index">
             <div class="shw-original-position">
                 Original Position: {{ res.originalResultIndex + 1 }}
             </div>
@@ -14,7 +14,6 @@
 <script>
 export default {
     props:['data'],
-    
 }
 </script>
 
@@ -57,12 +56,10 @@ export default {
   font-size: 14px;
   color: rgb(0, 102, 33);
   line-height: 16px;
-  /* white-space: nowrap; */
   margin-top: -2px;
   display: block;
   word-break: break-all;
 }
-
 
 @media only screen and (max-width: 765px) {
   .shw-results-container {

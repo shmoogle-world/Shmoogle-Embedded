@@ -5,5 +5,8 @@ Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } });
 
 new Vue({
     render: h => h(App),
- }).$mount('#app')
+ }).$mount('#shw-search')
 
+/**
+ * This file is supposed to generate a functional webpack containing components written in vue.
+ */
