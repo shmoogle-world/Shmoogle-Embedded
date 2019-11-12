@@ -22,7 +22,7 @@ export default {
 .shw-results-container {
   width: 30vw;
   padding: 0 15px;
-  height: 54vh;
+  height: 55vh;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -65,9 +65,14 @@ export default {
   .shw-results-container {
     width: 55vw;
     padding: 0 5px;
-    height: 42vh;
+    height: 48vh;
   }
-
 }
+@media only screen and (max-height: 660px) {
+    .shw-results-container {
+    height: 48vh;
+  }
+}
+
 
 </style>
