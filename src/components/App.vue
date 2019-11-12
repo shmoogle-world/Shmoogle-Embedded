@@ -46,7 +46,7 @@ export default {
   mounted() {},
   methods: {
     sendSearchRequest() {
-      if(!this.searchQuery) {
+      if(this.searchQuery === "") {
           return;
       }
       this.loadingAnimation = true;
