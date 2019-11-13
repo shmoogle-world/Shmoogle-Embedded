@@ -1,6 +1,9 @@
 const Vue = require('vue');
 import App from './components/App.vue';
 import VModal from 'vue-js-modal';
+import VTooltip from 'v-tooltip';
+
+Vue.use(VTooltip);
 Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } });
 
 new Vue({
