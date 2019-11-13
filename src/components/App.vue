@@ -68,11 +68,11 @@ export default {
           }
         }
       };
-      //TODO: Update this with the placeholder access key when that system is in place. ༼ つ ◕_◕ ༽つ
       http.open(
         "GET",
-        "https://bingsearchapiv1.azurewebsites.net/api/search/" +
-          this.searchQuery
+        "https://bingsearchapiv1.azurewebsites.net/api/custom/search/" +
+          this.searchQuery +
+          "/?key=UNIQUE_ACCESSKEY"
       );
       http.send(null);
     },
