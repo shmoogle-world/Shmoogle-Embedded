@@ -3,6 +3,12 @@
     <div>
       <div class="shw-input-parent">
         <input
+          v-tooltip="{
+            content: error,
+            show: errorOpen,
+            trigger: 'manual',
+            placement: 'bottom',
+          }"
           class="shw-input"
           type="text"
           v-model="searchQuery"
@@ -31,13 +37,16 @@
 <script>
 import Modal from "./Modal.vue";
 
+
 export default {
   data() {
     return {
       loadingAnimation: false,
       searchQuery: "",
       resultElapsedTime: 0,
-      result: {}
+      result: {},
+      error: '',
+      errorOpen: false,
     };
   },
   components: {
@@ -56,24 +65,29 @@ export default {
       var self = this;
       http.onreadystatechange = function() {
         if (this.readyState == 4) {
-          if (this.status == 200) {
             self.loadingAnimation = false;
-            let time = (new Date().getTime() - initTime) / 1000;
-            self.resultElapsedTime = parseFloat(time.toPrecision(3));
             let response = JSON.parse(this.response);
-            self.decode(response);
-            self.result = response;
 
-            self.renderModal();
-          }
+            if(this.status == 200) {
+                let time = (new Date().getTime() - initTime) / 1000;
+                self.resultElapsedTime = parseFloat(time.toPrecision(3));
+                self.decode(response);
+                self.result = response;
+                self.renderModal();
+            }
+            else {
+                console.log(this.response);
+                self.error = response.error;
+                self.errorOpen = true;
+            }
+            
         }
       };
-      http.open(
-        "GET",
-        "https://bingsearchapiv1.azurewebsites.net/api/custom/search/" +
+
+      http.open("GET",
+          "UNIQUE_URL_ENDPOINT/api/custom/search/" +
           this.searchQuery +
-          "/?key=UNIQUE_ACCESSKEY"
-      );
+          "/?key=UNIQUE_ACCESSKEY&site=UNIQUE_CUSTOM_SEARCH_FILTER");
       http.send(null);
     },
     decode(response) {
@@ -104,6 +118,7 @@ export default {
   },
   watch: {
       searchQuery(val) {
+          this.errorOpen = false;
           let searchField = document.getElementsByClassName('shw-input')[0];
           if(val.length == 0) {
             searchField.classList.remove("shw-hide-background");
@@ -114,6 +129,48 @@ export default {
   }
 };
 </script>
+
+<style>
+
+.tooltip {
+    display: block !important;
+    z-index: 10000;
+}
+
+.tooltip .tooltip-inner {
+    background: #4d4c4d;
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 5px 10px 4px;
+}
+
+.tooltip .tooltip-arrow {
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+    border-color: #4d4c4d;
+    z-index: 1;
+}
+
+.tooltip[x-placement^="bottom"] {
+    margin-top: 5px;
+}
+
+.tooltip[x-placement^="bottom"] .tooltip-arrow {
+    border-width: 0 5px 5px 5px;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-top-color: transparent !important;
+    top: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+</style>
 
 <style scoped>
 .shw-flexbox {
@@ -197,6 +254,7 @@ export default {
   background-repeat: no-repeat;
   background-position: left center; 
 }
+
 .shw-hide-background {
  background-image: none;
  
@@ -237,4 +295,5 @@ export default {
     width: 154px;
   }
 }
+
 </style>
