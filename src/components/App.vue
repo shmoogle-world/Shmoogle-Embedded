@@ -76,8 +76,8 @@ export default {
                 self.renderModal();
             }
             else {
-                console.log(this.response);
-                self.error = response.error;
+                console.log(this.response.error);
+                self.error = 'Something went wrong!';
                 self.errorOpen = true;
             }
             
