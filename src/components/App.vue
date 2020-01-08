@@ -281,35 +281,12 @@ export default {
 .shw-container {
   display: flex;
 }
-/* 
-::-webkit-input-placeholder{
+
+.shw-input:focus::placeholder {
     color: transparent;
-    font-style:italic;
-}  */
-:focus::-webkit-input-placeholder{
-     text-indent: -999px
-}
-/* ::-moz-placeholder{
-    color: #ccc;
-    font-style:italic;
-} */
-:focus::-moz-placeholder{
-     text-indent: -999px
 }
 
 @media only screen and (max-width: 765px) {
-    ::-webkit-input-placeholder {
-        color: transparent;
-    }
-    :-moz-placeholder {
-        color: transparent;
-    }
-    ::-moz-placeholder {
-        color: transparent;
-    }
-    :-ms-input-placeholder {
-        color: transparent;
-    }
     input::placeholder {
         color: transparent;
     }   
@@ -319,7 +296,7 @@ export default {
 
     .shw-input {
         width: 148px;
-        background-position: left center; 
+        background-position: left 65%; 
     }
 
     .shw-load-animation {
