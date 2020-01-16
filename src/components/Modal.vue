@@ -1,5 +1,8 @@
 <template>
     <div class="shw-modal">
+        <div class="shw-topbar">
+            <svg class="shw-modal-close" @click="$emit('close')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+        </div>
         <div class="shw-counter">
             <toggle-button class="shw-toggleBtn" v-if="isMobile" v-model="mobileShuffled"
                 :color="{checked: '#01B8B3', unchecked: '#FECD07'}"
@@ -125,12 +128,19 @@ export default {
 </script>
 
 <style scoped>
-.shw-modal {
-    margin-right: 15px;
+.shw-modal-close {
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 5px;
 }
+.shw-topbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .shw-container {
     display: flex;
-    flex-direction: row;
+    padding: 0 15px;
 }
 .shw-justify-center {
     justify-content: center;
@@ -141,7 +151,7 @@ export default {
     margin-right: 50px;
 }
 .shw-counter {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
   font-size: 13px;
   color: rgb(128, 128, 128);

@@ -116,6 +116,8 @@ export default {
           resizable: false,
           width: "90%",
           height: "90%",
+          maxWidth: 1728,
+          maxHeight: 864,
           adaptive: true
         }
       );

@@ -20,9 +20,9 @@ export default {
 <style>
 
 .shw-results-container {
-  width: 30vw;
-  padding: 0 15px;
-  height: 55vh;
+  margin: 0 15px;
+  max-height: 737px;
+  height: 73vh;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -61,16 +61,16 @@ export default {
   word-break: break-all;
 }
 
-@media only screen and (max-width: 765px) {
+@media only screen and (max-width: 660px) {
   .shw-results-container {
-    width: 55vw;
+    width: 80vw;
     padding: 0 5px;
-    height: 48vh;
+    height: 70vh;
   }
 }
 @media only screen and (max-height: 660px) {
     .shw-results-container {
-        height: 48vh;
+        height: 70vh;
     }
 }
 
