@@ -70,9 +70,8 @@ export default {
 }
 @media only screen and (max-height: 660px) {
     .shw-results-container {
-    height: 48vh;
-  }
+        height: 48vh;
+    }
 }
-
 
 </style>
