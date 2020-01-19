@@ -1,7 +1,9 @@
 <template>
     <div class="shw-modal">
         <div class="shw-topbar">
-            <svg class="shw-modal-close" @click="$emit('close')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+            <div class="shw-modal-close" @click="$emit('close')">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="#4D4D4D" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+            </div>
         </div>
         <div class="shw-counter">
             <toggle-button class="shw-toggleBtn" v-if="isMobile" v-model="mobileShuffled"
@@ -130,6 +132,7 @@ export default {
 <style scoped>
 .shw-modal-close {
     cursor: pointer;
+    padding: 7px;
     margin-right: 5px;
     margin-top: 5px;
 }
@@ -154,7 +157,7 @@ export default {
   margin-top: 10px;
   margin-bottom: 20px;
   font-size: 13px;
-  color: rgb(128, 128, 128);
+  color: #4D4D4D;
   margin-left: 4vw;
 }
 
@@ -163,8 +166,8 @@ export default {
     bottom: 5px;
     right: 15px;
 }
-.shw-powered-by a{
-    color: black;
+.shw-powered-by a,a:visited{
+    color: #4D4D4D;
     font-size: 10px;
     text-decoration: none;
 }
